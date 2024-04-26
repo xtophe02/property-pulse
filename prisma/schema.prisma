@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+model Property {
+  id          String    @id @default(cuid())
+  owner       String
+  name        String
+  type        String
+  description String
+  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locationId  String
+  beds        Int
+  baths       Int
+  square_feet Int
+  amenities   String[]
+  rates       Rates @relation(fields: [ratesId], references: [id], onDelete: Cascade)
+  ratesId     String
+  seller_info SellerInfo @relation(fields: [sellerInfoId], references: [id], onDelete: Cascade)
+  sellerInfoId String
+  images      String[]
+  is_featured Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+}
+
+model Location {
+  id       String @id @default(cuid())
+  street   String
+  city     String
+  state    String
+  zipcode  String
+  property Property[]
+}
+
+
+model Rates {
+  id       String @id @default(cuid())
+  weekly   Int
+  monthly  Int
+  nightly  Int
+  property Property[]
+} 
+
+model SellerInfo {
+  id       String @id @default(cuid())
+  name     String
+  email    String
+  phone    String
+  property Property[]
+}
+

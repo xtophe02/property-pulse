@@ -1,7 +1,10 @@
+import PropertiesList from "@/components/Properties/Properties-list";
+import PropertiesListSkeleton from "@/components/Properties/Properties-list-skeleton";
+import { Suspense } from "react";
 export default async function Page() {
   return (
-    <div>
-      <h1>Page</h1>
-    </div>
+    <Suspense fallback={<PropertiesListSkeleton numberOfProperties={9} />}>
+      <PropertiesList />
+    </Suspense>
   );
 }
