@@ -3,10 +3,17 @@
 import NavLink from "./Navbar-links";
 import { useState } from "react";
 import Link from "next/link";
+import { login, logout } from "@/lib/actions";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  async function login_google() {
+    await login();
+  }
+  async function logout_google() {
+    await logout();
+  }
 
   return (
     <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-4 dark:bg-neutral-800">
@@ -63,6 +70,7 @@ export default function Navbar() {
           </button>
           {!isLoggedIn && (
             <button
+              onClick={login_google}
               type="button"
               className="hidden py-2 px-3 sm:inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
             >
@@ -157,6 +165,7 @@ export default function Navbar() {
                 Login or Register
               </button>
             )}
+            <button onClick={logout_google}>logout</button>
           </div>
         </div>
       </nav>

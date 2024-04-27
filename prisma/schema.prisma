@@ -48,9 +48,9 @@ model Location {
 
 model Rates {
   id       String @id @default(cuid())
-  weekly   Int
-  monthly  Int
-  nightly  Int
+  weekly   Int?
+  monthly  Int?
+  nightly  Int?
   property Property[]
 } 
 

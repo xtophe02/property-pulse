@@ -16,7 +16,7 @@ export default async function PropertiesList({ numberOfProperties = 0 }) {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {properties.length > 0 ? (
           properties.map((property) => (
-            <PropertyCard key={property._id} property={property} />
+            <PropertyCard key={property.id} property={property} />
           ))
         ) : (
           <div className="col-span-full text-center">

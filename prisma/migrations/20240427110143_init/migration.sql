@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Rates" ALTER COLUMN "weekly" DROP NOT NULL,
+ALTER COLUMN "monthly" DROP NOT NULL,
+ALTER COLUMN "nightly" DROP NOT NULL;

@@ -5,10 +5,12 @@ import PropertiesList from "@/components/Properties/Properties-list";
 import PropertiesListSkeleton from "@/components/Properties/Properties-list-skeleton";
 import Link from "next/link";
 import { Suspense } from "react";
+import GoogleLogin from "@/components/GoogleLogin/Google-login";
 
 export default function Home() {
   return (
     <>
+      {/* <GoogleLogin /> */}
       <Hero />
       <InfoBoxes />
       <Suspense fallback={<PropertiesListSkeleton numberOfProperties={3} />}>
